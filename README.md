@@ -2,16 +2,23 @@
 
 This repository contains Zeptosat, a header-only, dependency-free, incremental SAT solver written in, say, questionable,
 but short, C++20 (~80 lines of code).
-Features include Variable State Independent Decaying Sum (VSIDS) branching, phase saving, two-watched literals, blocking literals, inlined binary clauses, and clause deletion.
+
+Features include:
+- Variable State Independent Decaying Sum (VSIDS) branching,
+- phase saving,
+- two-watched literals,
+- blocking literals,
+- inlined binary clauses, and
+- clause deletion.
 
 Excluding our short ICPC template and optional code for cardinality constraints, Zeptosat is only ~80 lines of code.
 Apart from the AI-generated fuzzer in `fuzz.py`, everything is handwritten.
 
-### Quickstart
+## Quickstart
 
-#### Usage as a library
+### Usage as a library
 
-Copy zeptosat.cpp into your project. Then,
+Copy [`zeptosat.cpp`](zeptosat.cpp) into your project. Then,
 ```cpp
 SAT pizza(4);
 int mushrooms = 0, pineapple = 1, mozzarella = 2, pepperoni = 3;
@@ -39,9 +46,9 @@ will reuse information it learned from the previous calls to `solve()`.
 
 Note that the solver only works when compiled with `g++`, as it makes use of [`g++`'s policy-based priority queue](https://gcc.gnu.org/onlinedocs/libstdc++/manual/policy_data_structures.html#pbds.intro.motivation.priority_queue).
 
-#### Usage as a standalone solver
+### Usage as a standalone solver
 
-`main.cpp` contains a small standalone DIMACS CNF parser. Copy and compile it together with `zeptosat.cpp` and provide your CNF
+[`main.cpp`](main.cpp) contains a small standalone DIMACS CNF parser. Copy and compile it together with `zeptosat.cpp` and provide your CNF
 either as a file passed as the first argument to the executable or via standard input, i.e.:
 
 ```shell
@@ -50,7 +57,7 @@ g++ -std=c++20 -O3 main.cpp -o zeptosat
 ./zeptosat < example.cnf
 ```
 
-### Motivation behind Zeptosat
+## Motivation behind Zeptosat
 
 Due to being header-only, Zeptosat is intended to be used in programming competitions.
 Zeptosat is so small that it is part of HPI's ICPC team reference document, a printed text document, which can be used during
@@ -59,30 +66,27 @@ ICPC competitions to manually copy code.
 For the purpose of programming competitions, there is also [`togasat`](https://github.com/togatoga/togasat), which is
 also header-only, but not quite as compressed with ~520 lines of code.
 
-### Performance
+## Performance
 
 Publishing accurate and fair benchmarks is hard. One should always take them with a grain of salt.
 That being said, from my experience so far, I can say: _it is not bad (for its size)._
-It punches above its weight and is at the very least not worse than its "competitor" `togasat`.
-On a few instances it even outperformed `minisat`, a proper SAT solver.
+It punches above its weight and is at the very least not worse than its "competitor" Togasat.
+On a few instances it even outperformed Minisat, a proper SAT solver.
 
-### Why is it called Zeptosat?
+## Why is it called Zeptosat?
 
-Well, there are already `minisat`[^2] and `picosat`[^3], which
+Well, there are already [`minisat`](http://minisat.se/) and [`picosat`](https://fmv.jku.at/picosat/), which
 claim to be small, but in comparison to Zeptosat, really aren't.
 
 Obviously, the logical consequence is to further descend the list of SI prefixes, but as it turns out Femtosat and
-Attosat name a class of very small satellites[^4]. So zepto just was the next smaller SI prefix.
+Attosat name a class of very small satellites[^2]. So zepto just was the next smaller SI prefix.
 However, one could of course also argue that the jump in size is so significant that it justifies skipping two prefixes.
 
-### Contributing
+## Contributing
 
-Found a bug, or have an idea to reduce the code size even further? Please open an issue.
+If you found a bug, or have an idea to reduce the code size even further, I'd be very happy to hear about it.
+Please let me know by opening an issue.
 
 [^1]: Set by a human.
 
-[^2]: http://minisat.se/
-
-[^3]: https://fmv.jku.at/picosat/
-
-[^4]: [Femtosatellites (Wikipedia)](https://en.wikipedia.org/wiki/Small_satellite#Femtosatellites)
+[^2]: [Femtosatellites (Wikipedia)](https://en.wikipedia.org/wiki/Small_satellite#Femtosatellites)

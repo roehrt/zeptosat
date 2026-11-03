@@ -44,8 +44,6 @@ else {
 The solver is also incremental, meaning you can continue adding constraints and then call `solve()` again—[^1]Zeptosat
 will reuse information it learned from the previous calls to `solve()`.
 
-Note that the solver only works when compiled with `g++`, as it makes use of [`g++`'s policy-based priority queue](https://gcc.gnu.org/onlinedocs/libstdc++/manual/policy_data_structures.html#pbds.intro.motivation.priority_queue).
-
 ### Usage as a standalone solver
 
 [`main.cpp`](main.cpp) contains a small standalone DIMACS CNF parser. Copy and compile it together with `zeptosat.cpp` and provide your CNF
